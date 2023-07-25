@@ -1,365 +1,200 @@
 /* eslint-disable react-native/no-inline-styles */
-import {Badge, Button, CheckBox, Text} from '@rneui/base';
+import {Button, Text} from '@rneui/base';
 import React, {useState} from 'react';
-import {FlatList, StyleSheet, View} from 'react-native';
-
+import {ScrollView, StyleSheet, View} from 'react-native';
+import {CardCheckStress} from './CardCheckStress';
+export interface CardDataPrors {
+  bgColor: string;
+  id: number;
+  title: string;
+}
 // type Props = {}
-// "#FADBD8",  # Light Apricot
-//     "#FDEDEC",  # Light Pink
-//     "#F8C471",  # Light Goldenrod Yellow
-//     "#F0E68C",  # Khaki
-//     "#FDFD96",  # Pastel Yellow
-//     "#F0FFF0",  # Honeydew
-//     "#E6E6FA",  # Lavender
-//     "#FFDAB9",  # Peach Puff
-//     "#E1F5C4",  # Tea Green
-//     "#FFFACD",  # Lemon Chiffon
-//     "#FFF8DC",  # Cornsilk
-//     "#E0FFFF",  # Light Cyan
-//     "#F0F8FF",  # Alice Blue
-//     "#FFF0F5",  # Lavender Blush
+
 //     "#F5F5F5",  # White Smoke
 //     "#FAF0E6",  # Linen
 //     "#E6E6E6",  # Light Grey
 //     "#F5F5DC",  # Beige
 //     "#F0F8C6",  # Light Goldenrod
 //     "#FFF5EE",  # Seashell
-const data = [
-  {
-    id: 1,
-    msg: 'เรื่องไม่สบายใจเล็กน้อยทำให้ฉันว้าวุ่นใจนั่งไม่ติด',
-    bgColor: '#F0E68C',
-  },
-  {
-    id: 2,
-    msg: 'เวลาทุกข์ใจมากๆ ฉันเจ็บป่วยไม่สบาย',
-    bgColor: '#FDEDEC',
-  },
-  {
-    id: 3,
-    msg: 'เมื่อมีปัญหาวิกฤตเกิด ขึ้นฉันรู้สึกว่าตัวเอง ไร้ความสามารถ',
-    bgColor: '#F8C471',
-  },
-  {
-    id: 4,
-    msg: 'เมื่อมีปัญหาวิกฤตเกิด ขึ้นฉันรู้สึกว่าตัวเอง ไร้ความสามารถ',
-    bgColor: '#F8C471',
-  },
-];
+
 const AssessmentScreen = () => {
-  const [selectedIndex, setIndex] = useState(0);
+  const [selectValues, setSelectValues] = useState<{[key: number]: number}>({
+    '1': 0,
+  });
+  const cartNumbersAndData: CardDataPrors[] = [
+    {
+      id: 1,
+      bgColor: '#FADBD8',
+      title: 'เรื่องไม่สบายใจเล็กน้อยทำให้ฉันว้าวุ่นใจนั่งไม่ติด',
+    },
+    {
+      id: 2,
+      bgColor: '#FDEDEC',
+      title: 'ฉันไม่ใส่ใจคนที่หัวเราะเยาะฉัน',
+    },
+    {
+      id: 3,
+      bgColor: '#FFF5EE',
+      title: 'เมื่อฉันทำผิดพลาดหรือเสียหาย ฉันยอมรับผิดหรือผลที่ตามมา',
+    },
+    {
+      id: 4,
+      bgColor: '#F0E68C',
+      title: 'ฉันเคยยอมทนลำบากเพื่ออนาคตที่ดีขึ้น',
+    },
+    {
+      id: 5,
+      bgColor: '#FDFD96',
+      title: 'เวลาทุกข์ใจมากๆ ฉันเจ็บป่วยไม่สบาย',
+    },
+    {
+      id: 6,
+      bgColor: '#F0FFF0',
+      title: 'ฉันสอนและเตือนตัวเอง',
+    },
+    {
+      id: 7,
+      bgColor: '#E6E6FA',
+      title: 'ความยากลำบากทำให้ฉันแกร่งขึ้น',
+    },
+    {
+      id: 8,
+      bgColor: '#FFDAB9',
+      title: 'ฉันไม่จดจำเรื่องเลวร้ายในอดีต',
+    },
+    {
+      id: 9,
+      bgColor: '#E1F5C4',
+      title: 'ถึงแม้ปัญหาจะหนักหนาเพียงใดชีวิตฉันก็ไม่เลวร้ายไปหมด',
+    },
+    {
+      id: 10,
+      bgColor: '#FFFACD',
+      title: 'เมื่อมีเรื่องหนักใจ ฉันมีคนปรับทุกข์ด้วย',
+    },
+    {
+      id: 11,
+      bgColor: '#E0FFFF',
+      title:
+        'จากประสบการณ์ที่ผ่านมาทำให้ฉันมั่นใจว่าจะแก้ปัญหาต่างๆ ที่ผ่านเข้ามาในชีวิตได้',
+    },
+    {
+      id: 12,
+      bgColor: '#F0F8FF',
+      title: 'ฉันมีครอบครัวและคนใกล้ชิดเป็นกำลังใจ',
+    },
+    {
+      id: 13,
+      bgColor: '#FFF0F5',
+      title: 'ฉันมีแผนการที่จะทำให้ชีวิตก้าวไปข้างหน้า',
+    },
+    {
+      id: 14,
+      bgColor: '#F5F5F5',
+      title: 'เมื่อมีปัญหาวิกฤตเกิดขึ้น ฉันรู้สึกว่าตัวเองไร้ความสามารถ',
+    },
+    {
+      id: 15,
+      bgColor: '#FAF0E6',
+      title:
+        'เป็นเรื่องยากสำหรับฉันที่จะทำให้ชีวิตดีขึ้น ด้านการจัดการกับปัญหา',
+    },
+    {
+      id: 16,
+      bgColor: '#F5F5DC',
+      title: 'ฉันอยากหนีไปให้พ้น หากมีปัญหาหนักหนาต้องรับผิดชอบ',
+    },
+    {
+      id: 17,
+      bgColor: '#F0F8C6',
+      title: 'การแก้ไขปัญหาทำให้ฉันมีประสบการณ์มากขึ้น',
+    },
+    {
+      id: 18,
+      bgColor: '#FFF5EE',
+      title: 'ในการพูดคุย ฉันหาเหตุผลที่ทุกคนยอมรับหรือเห็นด้วยกับฉันได้',
+    },
+    {
+      id: 19,
+      bgColor: '#FDEDEC',
+      title: 'ฉันเตรียมหาทางออกไว้ หากปัญหาร้ายแรงกว่าที่คิด',
+    },
+    {
+      id: 20,
+      bgColor: '#F0E68C',
+      title: 'ฉันชอบฟังความคิดเห็นที่แตกต่างจากฉัน',
+    },
+  ];
+  const handleRadioChange = (cardNumber: number, value: number) => {
+    setSelectValues(prev => ({
+      ...prev,
+      [cardNumber]: value,
+    }));
+  };
+  const isCardFullySelected = Object.values(selectValues).every(
+    value => value !== 0,
+  );
   return (
     <View style={styles.container}>
-      <FlatList
-        data={data}
-        ListHeaderComponent={
+      <ScrollView>
+        <Text
+          style={{
+            textAlign: 'center',
+            fontSize: 32,
+            fontFamily: 'Prompt-Bold',
+            marginTop: 50,
+          }}>
+          แบบประเมิน
+        </Text>
+        {cartNumbersAndData.map((item, index) => (
+          <CardCheckStress
+            key={index}
+            item={item}
+            selectedvalue={selectValues[item.id] || 0}
+            handleRadioChange={value => handleRadioChange(item.id, value)}
+          />
+        ))}
+        {!isCardFullySelected && (
           <Text
             style={{
+              color: 'red',
+              fontFamily: 'Prompt-Light',
+              fontSize: 18,
+              marginVertical: 10,
               textAlign: 'center',
-              fontSize: 32,
-              fontFamily: 'Prompt-Bold',
-              marginTop: 50,
             }}>
-            แบบประเมิน
+            โปรดเลือกข้อมูลให้ครบ
           </Text>
-        }
-        ListFooterComponent={
-          <Button
-            title={'ตกลง'}
-            containerStyle={{paddingHorizontal: 50, marginBottom: 20}}
-            buttonStyle={{
-              borderRadius: 25,
-              height: 52,
-              backgroundColor: '#F1EB24',
-            }}
-            titleStyle={{color: 'black', fontFamily: 'Prompt-Light'}}
-            onPress={() => {
-              // navigate('Assessment');
-              console.log('Pressed');
-            }}
-          />
-        }
-        renderItem={({item}) => (
-          <>
-            <View
-              id={item.id.toString()}
-              style={{
-                // flex: 1,
-                flexDirection: 'column',
-                backgroundColor: item.bgColor,
-                marginHorizontal: 15,
-                borderRadius: 25,
-                padding: 10,
-                marginVertical: 5,
-              }}>
-              <View
-                style={{flexDirection: 'row', justifyContent: 'space-between'}}>
-                <Text
-                  style={{
-                    fontSize: 15,
-                    fontFamily: 'Prompt-Bold',
-                    paddingLeft: 10,
-                    marginRight: 4,
-                    flexWrap: 'wrap',
-                    width: '90%',
-                    // letterSpacing:2
-                  }}>
-                  เรื่องไม่สบายใจเล็กน้อยทำให้ฉันว้าวุ่นใจนั่งไม่ติด
-                </Text>
-                <Badge
-                  value={`${item.id}/20`}
-                  status="success"
-                  // containerStyle={{marginHorizontal: 4}}
-                />
-              </View>
-              <View
-                style={{
-                  flexDirection: 'row',
-                  justifyContent: 'space-between',
-                  marginTop: 10,
-                }}>
-                <CheckBox
-                  checked={selectedIndex === 0}
-                  onPress={() => setIndex(0)}
-                  checkedIcon="dot-circle-o"
-                  uncheckedIcon="circle-o"
-                  containerStyle={{
-                    width: '40%',
-                    borderRadius: 25,
-                    borderColor: '#D9D9D9',
-                    borderWidth: 1,
-                  }}
-                  title={'ไม่จริง'}
-                />
-                <CheckBox
-                  checked={selectedIndex === 1}
-                  onPress={() => setIndex(1)}
-                  checkedIcon="dot-circle-o"
-                  uncheckedIcon="circle-o"
-                  containerStyle={{
-                    width: '40%',
-                    borderRadius: 25,
-                    borderColor: '#D9D9D9',
-                    borderWidth: 1,
-                  }}
-                  title={'จริงบางครั้ง'}
-                />
-              </View>
-              <View
-                style={{flexDirection: 'row', justifyContent: 'space-between'}}>
-                <CheckBox
-                  checked={selectedIndex === 2}
-                  onPress={() => setIndex(2)}
-                  checkedIcon="dot-circle-o"
-                  uncheckedIcon="circle-o"
-                  containerStyle={{
-                    width: '40%',
-                    borderRadius: 25,
-                    borderColor: '#D9D9D9',
-                    borderWidth: 1,
-                  }}
-                  title={'ไม่จริง'}
-                />
-                <CheckBox
-                  checked={selectedIndex === 3}
-                  onPress={() => setIndex(3)}
-                  checkedIcon="dot-circle-o"
-                  uncheckedIcon="circle-o"
-                  containerStyle={{
-                    width: '40%',
-                    borderRadius: 25,
-                    borderColor: '#D9D9D9',
-                    borderWidth: 1,
-                  }}
-                  title={'จริงบางครั้ง'}
-                />
-              </View>
-            </View>
-          </>
         )}
-        keyExtractor={item => item.id.toString()}
-      />
+        <Button
+          title={'ตกลง'}
+          containerStyle={{paddingHorizontal: 50, marginBottom: 20}}
+          buttonStyle={{
+            borderRadius: 25,
+            height: 52,
+            backgroundColor: '#F1EB24',
+            shadowColor: '#000',
+            shadowOffset: {
+              width: 0,
+              height: 2,
+            },
+            shadowOpacity: 0.25,
+            shadowRadius: 3.84,
 
-      {/* <View
-        style={{
-          // flex: 1,
-          flexDirection: 'column',
-          backgroundColor: '#EFFFEA',
-          marginHorizontal: 15,
-          borderRadius: 25,
-          padding: 10,
-        }}>
-        <View style={{flexDirection: 'row', justifyContent: 'space-between'}}>
-          <Text
-            style={{
-              fontSize: 15,
-              fontFamily: 'Prompt-Bold',
-              paddingLeft: 10,
-              marginRight: 4,
-              flexWrap: 'wrap',
-              width: '90%',
-              // letterSpacing:2
-            }}>
-            เวลาทุกข์ใจมากๆ ฉันเจ็บป่วยไม่สบาย
-          </Text>
-          <Badge
-            value="2/20"
-            status="success"
-            // containerStyle={{marginHorizontal: 4}}
-          />
-        </View>
-        <View
-          style={{
-            flexDirection: 'row',
-            justifyContent: 'space-between',
-            marginTop: 10,
-          }}>
-          <CheckBox
-            checked={selectedIndex === 0}
-            onPress={() => setIndex(0)}
-            checkedIcon="dot-circle-o"
-            uncheckedIcon="circle-o"
-            containerStyle={{
-              width: '40%',
-              borderRadius: 25,
-              borderColor: '#D9D9D9',
-              borderWidth: 1,
-            }}
-            title={'ไม่จริง'}
-          />
-          <CheckBox
-            checked={selectedIndex === 1}
-            onPress={() => setIndex(1)}
-            checkedIcon="dot-circle-o"
-            uncheckedIcon="circle-o"
-            containerStyle={{
-              width: '40%',
-              borderRadius: 25,
-              borderColor: '#D9D9D9',
-              borderWidth: 1,
-            }}
-            title={'จริงบางครั้ง'}
-          />
-        </View>
-        <View style={{flexDirection: 'row', justifyContent: 'space-between'}}>
-          <CheckBox
-            checked={selectedIndex === 2}
-            onPress={() => setIndex(2)}
-            checkedIcon="dot-circle-o"
-            uncheckedIcon="circle-o"
-            containerStyle={{
-              width: '40%',
-              borderRadius: 25,
-              borderColor: '#D9D9D9',
-              borderWidth: 1,
-            }}
-            title={'ไม่จริง'}
-          />
-          <CheckBox
-            checked={selectedIndex === 3}
-            onPress={() => setIndex(3)}
-            checkedIcon="dot-circle-o"
-            uncheckedIcon="circle-o"
-            containerStyle={{
-              width: '40%',
-              borderRadius: 25,
-              borderColor: '#D9D9D9',
-              borderWidth: 1,
-            }}
-            title={'จริงบางครั้ง'}
-          />
-        </View>
-      </View>
-      <View
-        style={{
-          // flex: 1,
-          flexDirection: 'column',
-          backgroundColor: '#FDFED0',
-          marginHorizontal: 15,
-          borderRadius: 25,
-          padding: 10,
-        }}>
-        <View style={{flexDirection: 'row', justifyContent: 'space-between'}}>
-          <Text
-            style={{
-              fontSize: 15,
-              fontFamily: 'Prompt-Bold',
-              paddingLeft: 10,
-              marginRight: 4,
-              flexWrap: 'wrap',
-              width: '90%',
-              // letterSpacing:2
-            }}>
-            เมื่อมีปัญหาวิกฤตเกิด ขึ้นฉันรู้สึกว่าตัวเอง ไร้ความสามารถ
-          </Text>
-          <Badge
-            value="3/20"
-            status="success"
-            // containerStyle={{width:50}}
-          />
-        </View>
-        <View
-          style={{
-            flexDirection: 'row',
-            justifyContent: 'space-between',
-            marginTop: 10,
-          }}>
-          <CheckBox
-            checked={selectedIndex === 0}
-            onPress={() => setIndex(0)}
-            checkedIcon="dot-circle-o"
-            uncheckedIcon="circle-o"
-            containerStyle={{
-              width: '40%',
-              borderRadius: 25,
-              borderColor: '#D9D9D9',
-              borderWidth: 1,
-            }}
-            title={'ไม่จริง'}
-          />
-          <CheckBox
-            checked={selectedIndex === 1}
-            onPress={() => setIndex(1)}
-            checkedIcon="dot-circle-o"
-            uncheckedIcon="circle-o"
-            containerStyle={{
-              width: '40%',
-              borderRadius: 25,
-              borderColor: '#D9D9D9',
-              borderWidth: 1,
-            }}
-            title={'จริงบางครั้ง'}
-          />
-        </View>
-        <View style={{flexDirection: 'row', justifyContent: 'space-between'}}>
-          <CheckBox
-            checked={selectedIndex === 2}
-            onPress={() => setIndex(2)}
-            checkedIcon="dot-circle-o"
-            uncheckedIcon="circle-o"
-            containerStyle={{
-              width: '40%',
-              borderRadius: 25,
-              borderColor: '#D9D9D9',
-              borderWidth: 1,
-            }}
-            title={'ไม่จริง'}
-          />
-          <CheckBox
-            checked={selectedIndex === 3}
-            onPress={() => setIndex(3)}
-            checkedIcon="dot-circle-o"
-            uncheckedIcon="circle-o"
-            containerStyle={{
-              width: '40%',
-              borderRadius: 25,
-              borderColor: '#D9D9D9',
-              borderWidth: 1,
-            }}
-            title={'จริงบางครั้ง'}
-          />
-        </View>
-      </View> */}
+            elevation: 5,
+            marginBottom: 5,
+          }}
+          titleStyle={{color: 'black', fontFamily: 'Prompt-Light'}}
+          onPress={() => {
+            // navigate('Assessment');
+            // if (selectValues) {
+            //   return;
+            // }
+            console.log('Pressed', selectValues);
+          }}
+          disabled={!isCardFullySelected}
+        />
+      </ScrollView>
     </View>
   );
 };
@@ -368,11 +203,6 @@ export default AssessmentScreen;
 const styles = StyleSheet.create({
   container: {
     flex: 1,
-    // marginTop: 50,
-    // alignContent:'center',
-    // justifyContent: 'center',
-    // alignContent: 'center',
-
     backgroundColor: '#FFFF',
     gap: 10,
   },

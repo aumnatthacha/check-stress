@@ -77,6 +77,16 @@ export function sectionDeveloper(
             borderRadius: 25,
             height: 52,
             backgroundColor: 'black',
+            shadowColor: '#000',
+            shadowOffset: {
+              width: 0,
+              height: 2,
+            },
+            shadowOpacity: 0.25,
+            shadowRadius: 3.84,
+
+            elevation: 5,
+            marginBottom: 5,
           }}
           titleStyle={{color: 'white', fontFamily: 'Prompt-Light'}}
           onPress={() => setIndex(prev => (prev += 1))}

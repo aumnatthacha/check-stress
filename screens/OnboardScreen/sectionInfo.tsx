@@ -70,6 +70,16 @@ export function sectionInfo(navigate: {
             borderRadius: 25,
             height: 52,
             backgroundColor: '#F1EB24',
+            shadowColor: '#000',
+            shadowOffset: {
+              width: 0,
+              height: 2,
+            },
+            shadowOpacity: 0.25,
+            shadowRadius: 3.84,
+
+            elevation: 5,
+            marginBottom: 5,
           }}
           titleStyle={{color: 'black', fontFamily: 'Prompt-Light'}}
           onPress={() => {
