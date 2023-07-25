@@ -107,7 +107,7 @@ const AssessmentScreen = () => {
                   เรื่องไม่สบายใจเล็กน้อยทำให้ฉันว้าวุ่นใจนั่งไม่ติด
                 </Text>
                 <Badge
-                  value="1/30"
+                  value={`${item.id}/20`}
                   status="success"
                   // containerStyle={{marginHorizontal: 4}}
                 />
