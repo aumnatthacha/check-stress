@@ -21,29 +21,12 @@ export const CardCheckStress: React.FC<RadioCardProps> = ({
   handleRadioChange,
   item,
 }) => {
-  // const data: RadioOption[] = [
-  //   {
-  //     msg: 'เรื่องไม่สบายใจเล็กน้อยทำให้ฉันว้าวุ่นใจนั่งไม่ติด',
-  //     bgColor: '#F0E68C',
-  //   },
-  //   {
-  //     msg: 'เวลาทุกข์ใจมากๆ ฉันเจ็บป่วยไม่สบาย',
-  //     bgColor: '#FDEDEC',
-  //   },
-  //   {
-  //     msg: 'เมื่อมีปัญหาวิกฤตเกิด ขึ้นฉันรู้สึกว่าตัวเอง ไร้ความสามารถ',
-  //     bgColor: '#F8C471',
-  //   },
-  //   {
-  //     msg: 'เมื่อมีปัญหาวิกฤตเกิด ขึ้นฉันรู้สึกว่าตัวเอง ไร้ความสามารถ',
-  //     bgColor: '#FDFD96',
-  //   },
-  // ];
   const radioButtons: RadioOption[] = [
-    {title: 'ไม่จริง', value: 1},
-    {title: 'จริงบางครั้ง', value: 2},
-    {title: 'ค่อนข้างจริง', value: 3},
-    {title: 'จริงมาก', value: 4},
+    {title: 'ไม่รู้สึกเครียด', value: 1},
+    {title: 'รู้สึกเครียดเล็กน้อย', value: 2},
+    {title: 'รู้สึกเครียดปานกลาง', value: 3},
+    {title: 'รู้สึกเครียดมาก', value: 4},
+    {title: 'รู้สึกเครียดมากที่สุด', value: 5},
   ];
   return (
     <View
@@ -94,12 +77,21 @@ export const CardCheckStress: React.FC<RadioCardProps> = ({
             uncheckedIcon="circle-o"
             checkedColor="black"
             containerStyle={{
-              width: '40%',
+              width: '90%',
               borderRadius: 25,
               borderColor: '#D9D9D9',
               borderWidth: 1,
             }}
-            title={radio.title}
+            title={
+              <Text
+                style={{
+                  fontSize: 12,
+                  fontFamily: 'Prompt-Regular',
+                  paddingLeft: 10,
+                }}>
+                {radio.title}
+              </Text>
+            }
             onPress={() => {
               if (selectedvalue === radio.value) {
                 handleRadioChange(0);

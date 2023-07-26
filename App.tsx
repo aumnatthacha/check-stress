@@ -4,12 +4,15 @@ import {createNativeStackNavigator} from '@react-navigation/native-stack';
 import Starter from './screens/StarterScreen';
 import OnboardScreen from './screens/OnboardScreen';
 import AssessmentScreen from './screens/Assessment';
+import AssessmentResultsScreen from './screens/AssessmentResultsScreen';
+import ResultScreen from './screens/ResultScreen';
 
 export type RootStackParamList = {
-  Starter: undefined;
-  OnBoard: undefined;
-  Assessment: undefined;
-  // Assessment: {result: string};
+  Starter: any;
+  OnBoard: any;
+  Result: any;
+  Assessment: any;
+  AssessmentResult: {score: number} | undefined;
 };
 const Stack = createNativeStackNavigator<RootStackParamList>();
 
@@ -23,6 +26,11 @@ function App(): JSX.Element {
         <Stack.Screen name="Starter" component={Starter} />
         <Stack.Screen name="OnBoard" component={OnboardScreen} />
         <Stack.Screen name="Assessment" component={AssessmentScreen} />
+        <Stack.Screen
+          name="AssessmentResult"
+          component={AssessmentResultsScreen}
+        />
+        <Stack.Screen name="Result" component={ResultScreen} />
       </Stack.Navigator>
     </NavigationContainer>
   );
